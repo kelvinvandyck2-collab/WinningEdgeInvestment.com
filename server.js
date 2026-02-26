@@ -108,8 +108,14 @@ const requireAdmin = (req, res, next) => {
         // If the user is an admin, proceed to the next middleware/route handler
         next();
     } else {
-        // If not an admin, redirect them to the admin login page
-        res.redirect('/admin-login.html');
+        // If not an admin, handle based on request type
+        if (req.originalUrl.startsWith('/api/')) {
+            // For API calls, send a 401 Unauthorized error
+            res.status(401).json({ success: false, message: 'Admin authentication required. Please log in again.' });
+        } else {
+            // For page loads, redirect to the admin login page
+            res.redirect('/admin-login.html');
+        }
     }
 };
 
