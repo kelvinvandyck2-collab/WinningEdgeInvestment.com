@@ -11,6 +11,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const speakeasy = require('speakeasy');
 const qrcode = require('qrcode');
+const MySQLStore = require('express-mysql-session')(session);
 
 // Use the built-in console for logging to resolve the TypeError
 const logger = console;
@@ -43,13 +44,6 @@ app.use(
   })
 );
 
-// Session middleware
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'a-default-secret-for-dev-only',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' }
-}));
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
@@ -65,6 +59,29 @@ const db = mysql.createPool({
 });
 
 logger.info('Connected to MySQL database pool.');
+
+// --- Session Store ---
+// Use a MySQL-backed session store for persistence across serverless function invocations.
+const sessionStore = new MySQLStore({
+    expiration: 86400000, // Sessions expire after 24 hours
+    createDatabaseTable: true, // Automatically create the sessions table
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+}, db.promise()); // Use the promise-based connection from the pool
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'a-default-secret-for-dev-only',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false, // More secure and efficient for login sessions
+    cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true, maxAge: 86400000 }
+}));
 
 // --- Security: Rate Limiting ---
 const loginLimiter = rateLimit({
