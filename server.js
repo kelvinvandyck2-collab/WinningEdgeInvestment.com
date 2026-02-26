@@ -142,7 +142,7 @@ app.get('/signup.html', requireValidToken, (req, res) => {
 });
 
 // Handle user signup
-app.post('/signup', (req, res, next) => {
+app.post('/api/signup', (req, res, next) => {
     const { name, email, phone_number, password } = req.body;
 
     // Double-check session for security
@@ -303,7 +303,7 @@ app.post('/signup', (req, res, next) => {
 });
 
 // Handle user login
-app.post('/login', loginLimiter, (req, res, next) => {
+app.post('/api/login', loginLimiter, (req, res, next) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -346,7 +346,7 @@ app.post('/login', loginLimiter, (req, res, next) => {
 });
 
 // Handle token verification
-app.post('/verify-token', (req, res, next) => {
+app.post('/api/verify-token', (req, res, next) => {
     const { token } = req.body;
     if (!token) {
         return res.status(400).json({ success: false, message: 'Token is required.' });
@@ -370,7 +370,7 @@ app.post('/verify-token', (req, res, next) => {
 // --- Admin Routes ---
 
 // Handle Admin Login
-app.post('/admin-login', loginLimiter, async (req, res, next) => {
+app.post('/api/admin-login', loginLimiter, async (req, res, next) => {
     const { username, password } = req.body;
     const adminUserId = 1; // The admin user is always ID 1
 
@@ -412,7 +412,7 @@ app.post('/admin-login', loginLimiter, async (req, res, next) => {
 });
 
 // Handle Admin 2FA Verification
-app.post('/admin-2fa-verify', (req, res, next) => {
+app.post('/api/admin-2fa-verify', (req, res, next) => {
     const { token } = req.body;
     const adminId = req.session.tfaPendingAdminId;
 
@@ -454,7 +454,7 @@ app.post('/admin-2fa-verify', (req, res, next) => {
 // --- Password Reset Flow ---
 
 // 1. Handle "Forgot Password" request
-app.post('/forgot-password', (req, res, next) => {
+app.post('/api/forgot-password', (req, res, next) => {
     const { email } = req.body;
     if (!email) {
         return res.status(400).json({ message: 'Email address is required.' });
@@ -512,7 +512,7 @@ app.post('/forgot-password', (req, res, next) => {
 });
 
 // 2. Handle the actual password reset
-app.post('/reset-password', (req, res, next) => {
+app.post('/api/reset-password', (req, res, next) => {
     const { token, password } = req.body;
 
     if (!token || !password) {

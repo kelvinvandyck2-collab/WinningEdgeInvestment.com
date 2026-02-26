@@ -290,7 +290,7 @@
             submitBtn.classList.add('loading');
 
             try {
-                const response = await fetch('/verify-token', {
+                const response = await fetch('/api/verify-token', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token })

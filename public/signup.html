@@ -234,7 +234,7 @@
             <div class="form-container">
                 <h1>Create Your Account</h1>
                 <p class="subtitle">Start your journey to financial freedom today.</p>
-                <form action="/signup" method="POST">
+                <form action="/api/signup" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <i class="fas fa-user"></i>
@@ -387,7 +387,7 @@
         }
 
         // Send data to server
-        fetch('/signup', {
+        fetch('/api/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
