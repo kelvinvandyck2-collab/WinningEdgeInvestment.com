@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - WINNING EDGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/help.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <div class="logo-inner">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <span class="logo-text">WINNING EDGE</span>
+                </div>
+                <ul class="nav-menu"> 
+                    <li class="nav-item"> 
+                        <a href="index.html" class="nav-link">Home</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="about.html" class="nav-link">About</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="packages.html" class="nav-link">Packages</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="contact.html" class="nav-link">Contact</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="login.html" class="nav-link login-btn">Login</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="register.html" class="nav-link register-btn">Register</a> 
+                    </li> 
+                </ul> 
+                <div class="hamburger"> 
+                    <span class="bar"></span> 
+                    <span class="bar"></span> 
+                    <span class="bar"></span> 
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+
+    <main>
+        <section class="help-hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Help Center</h1>
+                    <p class="hero-subtitle">Find answers to your questions and get the support you need</p>
+                    <div class="help-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search for help articles..." id="helpSearch">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="help-categories">
+            <div class="container">
+                <h2>Popular Help Topics</h2>
+                <div class="categories-grid" id="categoryGrid">
+                    <div class="category-card" data-category="getting-started">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Getting Started</h3>
+                        <p>Learn the basics of using WINNING EDGE</p>
+                    </div>
+                    <div class="category-card" data-category="account">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>Account Management</h3>
+                        <p>Manage your account settings and profile</p>
+                    </div>
+                    <div class="category-card" data-category="investments">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Investments</h3>
+                        <p>Understanding investment packages and returns</p>
+                    </div>
+                    <div class="category-card" data-category="deposits">
+                        <i class="fas fa-coins"></i>
+                        <h3>Deposits & Withdrawals</h3>
+                        <p>How to fund your account and withdraw profits</p>
+                    </div>
+                    <div class="category-card" data-category="security">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security</h3>
+                        <p>Keep your account safe and secure</p>
+                    </div>
+                    <div class="category-card" data-category="troubleshooting">
+                        <i class="fas fa-tools"></i>
+                        <h3>Troubleshooting</h3>
+                        <p>Solve common issues and problems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question faq-toggle">
+                            How do I create an account? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            To create an account, you'll need a registration token from an existing member. Once you have a token, click on the Register button in the top navigation, enter your token, and follow the registration process.
+                        </div>
+                    </div>
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question faq-toggle">
+                            What is the minimum investment? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            The minimum investment amount varies by package. Our Starter package has a minimum of $500, Professional requires $2,000, and Premium starts at $5,000.
+                        </div>
+                    </div>
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question faq-toggle">
+                            How often are profits distributed? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Profits are distributed monthly on the same day you made your initial investment. You can choose to withdraw your profits or reinvest them for compound growth.
+                        </div>
+                    </div>
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question faq-toggle">
+                            What cryptocurrencies do you accept? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            We currently accept Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), and USDT (ERC-20 and TRC-20). More cryptocurrencies will be added in the future.
+                        </div>
+                    </div>
+                    <div class="faq-item" onclick="toggleFaq(this)">
+                        <div class="faq-question faq-toggle">
+                            How long do withdrawals take? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Withdrawals are typically processed within 24 hours. During high volume periods, it may take up to 48 hours. Crypto withdrawals depend on network congestion.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="help-content">
+            <div class="container">
+                <div class="help-articles" id="helpArticles">
+                    <div class="article-category active" id="getting-started">
+                        <h2>Getting Started</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>How to Create an Account</h3>
+                                <p>Step-by-step guide to registering with WINNING EDGE using your registration token.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Understanding Investment Packages</h3>
+                                <p>Learn about our three investment packages and choose the right one for you.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Making Your First Investment</h3>
+                                <p>Complete guide to making your first investment and tracking your returns.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-category" id="account">
+                        <h2>Account Management</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>Updating Your Profile Information</h3>
+                                <p>How to update your personal information and contact details.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Changing Your Password</h3>
+                                <p>Steps to update your account password for better security.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Notification Preferences</h3>
+                                <p>Customize how you receive updates about your investments.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-category" id="investments">
+                        <h2>Investments</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>How Returns Are Calculated</h3>
+                                <p>Understanding how we calculate and distribute monthly profits.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Investment Duration and Lock Periods</h3>
+                                <p>Learn about investment terms and when you can access your funds.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Reinvesting Your Profits</h3>
+                                <p>How to reinvest your monthly profits for compound growth.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-category" id="deposits">
+                        <h2>Deposits & Withdrawals</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>How to Deposit Cryptocurrency</h3>
+                                <p>Complete guide to depositing Bitcoin, Litecoin, and Ethereum.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Withdrawal Methods and Fees</h3>
+                                <p>Understanding available withdrawal options and associated fees.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Processing Times</h3>
+                                <p>How long deposits and withdrawals take to process.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-category" id="security">
+                        <h2>Security</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>Two-Factor Authentication</h3>
+                                <p>How to enable 2FA for enhanced account security.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Recognizing Phishing Attempts</h3>
+                                <p>How to identify and avoid fraudulent emails and websites.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Secure Password Practices</h3>
+                                <p>Best practices for creating and maintaining strong passwords.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-category" id="troubleshooting">
+                        <h2>Troubleshooting</h2>
+                        <div class="articles-list">
+                            <div class="article-item">
+                                <h3>Login Issues</h3>
+                                <p>Solutions for common login problems and account access issues.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Missing Deposits</h3>
+                                <p>What to do if your cryptocurrency deposit doesn't appear.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="article-item">
+                                <h3>Browser Compatibility</h3>
+                                <p>Ensuring your browser works properly with our platform.</p>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="help-contact">
+            <div class="container">
+                <div class="contact-banner">
+                    <div class="contact-content">
+                        <h2>Still Need Help?</h2>
+                        <p>Our support team is available 24/7 to assist you with any questions or issues.</p>
+                        <div class="contact-options">
+                            <a href="contact.html" class="btn btn-primary">
+                                <i class="fas fa-envelope"></i>
+                                Contact Support
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-comments"></i>
+                                Live Chat
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+     
+   <!-- Footer -->
+   <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <div class="logo-inner">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <span class="footer-logo-text">WINNING EDGE</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in investment growth. Building wealth through smart, secure, and strategic investments.
+                    </p>
+                    <div class="social-links"> 
+                        <a href="https://facebook.com/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+                        <a href="https://twitter.com/winningedgeinv" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a> 
+                        <a href="https://linkedin.com/company/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> 
+                        <a href="https://instagram.com/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="packages.html">Investment Plans</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="verify-token.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="help.html">FAQ</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> support@winningedgeinvestment.com</p> 
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p> 
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Investment St, Finance City, USA</p> 
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Winning Edge Investment. All rights reserved.</p>
+                    <p>Your Money, Your Growth</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Mobile navigation toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    
+    if (hamburger) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
+    
+    // Show selected category
+    function showCategory(categoryId) {
+        // Hide all categories
+        document.querySelectorAll('.article-category').forEach(category => {
+            category.classList.remove('active');
+        });
+        
+        // Show selected category
+        document.getElementById(categoryId).classList.add('active');
+        
+        // Scroll to the category section
+        document.querySelector('.help-content').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+    
+    // Toggle FAQ items
+    function toggleFaq(element) {
+        element.classList.toggle('active');
+    }
+    
+    // Search functionality
+    document.getElementById('helpSearch').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        if (searchTerm.length > 2) {
+            // Simple search implementation
+            document.querySelectorAll('.article-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    // Show the parent category
+                    item.closest('.article-category').classList.add('active');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        } else {
+            // Reset if search term is too short
+            document.querySelectorAll('.article-item').forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+    });
+</script>
+</body>
+</html>

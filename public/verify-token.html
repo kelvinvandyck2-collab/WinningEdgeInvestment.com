@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Access Token - WINNING EDGE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #b21f1f;
+            --accent-color: #fdbb2d;
+            --text-light: #ffffff;
+            --text-dark: #333;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+        .page-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+        .instructions-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+            animation: slideInLeft 1s ease-out;
+        }
+        .instructions-panel h2 {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .instructions-panel h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .instructions-panel p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 450px;
+        }
+        .form-panel {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .form-container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+        .form-container h1 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .form-container p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group input {
+            padding: 15px 20px 15px 50px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: left;
+            background: #f9f9f9;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+            background: #fff;
+        }
+        .form-group i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        .submit-btn.loading {
+            background: linear-gradient(135deg, #4a5a9c, #d24f4f);
+            cursor: not-allowed;
+        }
+        .submit-btn .btn-text {
+            transition: opacity 0.2s ease;
+        }
+        .submit-btn.loading .btn-text {
+            opacity: 0;
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-top: 3px solid var(--text-light);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -12px;
+            margin-left: -12px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .submit-btn.loading .spinner {
+            opacity: 1;
+        }
+        .error-message {
+            color: #e74c3c;
+            background: #fdecea;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            border: 1px solid #f5c6cb;
+        }
+        .support-link {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+        .support-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .support-link a:hover {
+            text-decoration: underline;
+        }
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .floating-icons i {
+            position: absolute;
+            color: rgba(26, 42, 108, 0.08);
+            animation: float 20s infinite ease-in-out;
+        }
+        .floating-icons i:nth-child(1) { top: 15%; left: 5%; font-size: 50px; animation-duration: 25s; }
+        .floating-icons i:nth-child(2) { top: 70%; left: 10%; font-size: 30px; animation-duration: 30s; }
+        .floating-icons i:nth-child(3) { top: 25%; left: 30%; font-size: 60px; animation-duration: 20s; }
+        .floating-icons i:nth-child(4) { bottom: 10%; left: 20%; font-size: 40px; animation-duration: 35s; }
+        .floating-icons i:nth-child(5) { top: 50%; left: 45%; font-size: 25px; animation-duration: 22s; }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(15deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .page-wrapper { flex-direction: column; }
+            .instructions-panel {
+                flex: 0 0 300px;
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+                text-align: center;
+                align-items: center;
+            }
+            .instructions-panel h1 { font-size: 2rem; }
+            .instructions-panel p { max-width: 100%; }
+            .form-panel {
+                flex-grow: 1;
+                align-items: flex-start;
+                padding-top: 60px;
+            }
+        }
+        @media (max-width: 576px) {
+            .instructions-panel { flex: 0 0 250px; padding: 30px; }
+            .instructions-panel h1 { font-size: 1.8rem; }
+            .form-panel { padding: 40px 20px; }
+            .form-container { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <i class="fas fa-key"></i>
+        <i class="fas fa-lock"></i>
+        <i class="fas fa-rocket"></i>
+        <i class="fas fa-shield-alt"></i>
+        <i class="fas fa-chart-line"></i>
+    </div>
+    <div class="page-wrapper">
+        <div class="instructions-panel">
+            <h2>WINNING EDGE</h2>
+            <h1>Unlock Your Access</h1>
+            <p>Enter your exclusive access token to join our platform and start your investment journey.</p>
+        </div>
+        <div class="form-panel">
+            <div class="form-container">
+                <h1>Enter Access Token</h1>
+                <p>Please enter the token you received to proceed.</p>
+                <form id="token-form">
+                    <div class="form-group">
+                        <i class="fas fa-key"></i>
+                        <input type="text" id="token" name="token" placeholder="ENTER TOKEN" required>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Verify & Proceed</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+                <div id="feedback" class="error-message"></div>
+                <p class="support-link">
+                    Don't have a token? <a href="contact.html">Contact support</a> to request access.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('token-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const token = document.getElementById('token').value;
+            const feedbackEl = document.getElementById('feedback');
+            const submitBtn = e.target.querySelector('.submit-btn');
+
+            feedbackEl.style.display = 'none';
+            submitBtn.classList.add('loading');
+
+            try {
+                const response = await fetch('/verify-token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    window.location.href = '/signup.html';
+                } else {
+                    feedbackEl.textContent = result.message || 'Invalid or expired token.';
+                    feedbackEl.style.display = 'block';
+                }
+            } catch (error) {
+                feedbackEl.textContent = 'An error occurred. Please try again.';
+                feedbackEl.style.display = 'block';
+            } finally {
+                submitBtn.classList.remove('loading');
+            }
+        });
+    </script>
+</body>
+</html>
+
+```
+
+### How It Works
+
+1.  **User Access**: When a new user tries to go to `signup.html`, the server will see they haven't verified a token and will automatically redirect them to this new `verify-token.html` page.
+2.  **Token Entry**: The user enters the token you generated for them in the admin panel.
+3.  **Verification**: The page's JavaScript sends the token to the `/verify-token` endpoint on your server.
+4.  **Redirection**: If the server confirms the token is valid and unused, it sends back a success message. The JavaScript then redirects the user to the actual `signup.html` page, where they can create their account.
+
+With this file in place, your token-gated signup system is now complete.
+
+<!--
+[PROMPT_SUGGESTION]Can you help me add a "Copy Token" button to the admin panel?[/PROMPT_SUGGESTION]
+[PROMPT_SUGGESTION]How can I add an expiration date to the signup tokens?[/PROMPT_SUGGESTION]
+-->

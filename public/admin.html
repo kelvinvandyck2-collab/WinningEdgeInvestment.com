@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Investment Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --header-height: 60px;
+
+            /* New Professional Light Theme */
+            --primary-color: #D97706;   /* Rich Gold */
+            --accent-color: #6F42C1;    /* Purple for contrast */
+            --danger-color: #DC3545;    /* Standard Red */
+            --success-color: #198754;   /* Standard Green */
+            --warning-color: #FFC107;    /* Standard Yellow */
+
+            --bg-light: #F8F9FA;        /* Light Gray Background */
+            --sidebar-light: #FFFFFF;   /* White Sidebar */
+            --card-light: #FFFFFF;      /* White Cards */
+            --border-light: #DEE2E6;    /* Standard Border Color */
+
+            --text-dark: #212529;        /* Dark text for readability */
+            --text-muted: #6C757D;       /* Muted gray text */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: var(--sidebar-light);
+            border-right: 1px solid var(--border-light);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .sidebar-brand h3 {
+            margin: 0;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu {
+            flex-grow: 1;
+            padding: 1.5rem 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(217, 119, 6, 0.08);
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu a.active {
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-title h1 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-dropdown {
+            position: relative;
+            margin-left: 1rem;
+        }
+
+        .user-btn {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            padding: 0.5rem 0;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(217, 119, 6, 0.08);
+            color: var(--primary-color);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-light);
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Table Styles */
+        .table {
+            color: var(--text-dark);
+        }
+        .table-hover > tbody > tr:hover > * {
+            color: var(--text-dark);
+            background-color: #f1f3f5;
+        }
+        .table > :not(caption) > * > * {
+            border-bottom-width: 1px;
+            border-color: var(--border-light);
+        }
+        .table thead th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .avatar {
+            width: 32px; height: 32px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h3>Admin Panel</h3>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="#" class="active" data-section="dashboard">
+                <i class='bx bxs-dashboard'></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" data-section="users">
+                <i class='bx bxs-user'></i>
+                <span>Users</span>
+            </a>
+            <a href="#" data-section="investments">
+                <i class='bx bxs-bank'></i>
+                <span>Investments</span>
+            </a>
+            <a href="#" data-section="transactions">
+                <i class='bx bxs-transfer'></i>
+                <span>Transactions</span>
+            </a>
+            <a href="#" data-section="withdrawals">
+                <i class='bx bxs-wallet-withdraw'></i>
+                <span>Withdrawals</span>
+            </a>
+            <a href="#" data-section="deposits">
+                <i class='bx bxs-down-arrow-circle'></i>
+                <span>Deposits</span>
+            </a>
+            <a href="#" data-section="support">
+                <i class='bx bxs-conversation'></i>
+                <span>Support</span>
+            </a>
+            <a href="#" data-section="settings">
+                <i class='bx bxs-cog'></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" data-section="signup-tokens">
+                <i class='bx bxs-key'></i>
+                <span>Signup Tokens</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+            <div class="header-actions">
+                <div class="user-dropdown">
+                    <button class="user-btn" id="user-dropdown-btn">
+                        <div class="user-avatar" id="user-avatar">AD</div>
+                    </button>
+                    <div class="dropdown-menu" id="user-dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class='bx bxs-user me-2'></i>Profile
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class='bx bxs-cog me-2'></i>Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item">
+                            <i class='bx bx-log-out me-2'></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div id="page-content">
+            <!-- Content will be loaded here dynamically -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: var(--text-dark);">Welcome to Admin Dashboard</h5>
+                                <p class="card-text">Select a section from the sidebar to get started.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Dependencies
+/node_modules
+
+# Environment variables
+# This file contains sensitive credentials and should NEVER be committed.
+.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db

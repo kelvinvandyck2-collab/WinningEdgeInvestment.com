@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & FAQ - WINNING EDGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container container">
+                <div class="logo-container">
+                    <div class="logo-circle">
+                        <div class="logo-inner">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <span class="logo-text">WINNING EDGE</span>
+                </div>
+                <ul class="nav-menu"> 
+                    <li class="nav-item"> 
+                        <a href="index.html" class="nav-link">Home</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="about.html" class="nav-link">About</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="packages.html" class="nav-link">Packages</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="contact.html" class="nav-link active">Contact</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="login.html" class="nav-link login-btn">Login</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a href="verify-token.html" class="nav-link register-btn">Register</a> 
+                    </li> 
+                </ul> 
+                <div class="hamburger"> 
+                    <span class="bar"></span> 
+                    <span class="bar"></span> 
+                    <span class="bar"></span> 
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section contact-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Contact Us</h1>
+                    <p class="hero-subtitle">Get in touch with our expert team for support and guidance</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>Have questions about our investment packages or need support? Our team is here to help you 24/7.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h3>Email Support</h3>
+                                    <p>support@winningedge.com</p>
+                                    <small>Response within 2 hours</small>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h3>Phone Support</h3>
+                                    <p>+1 (555) 123-4567</p>
+                                    <small>Available 24/7</small>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h3>Telegram</h3>
+                                    <p>@WinningEdgeSupport</p>
+                                    <small>Instant messaging</small>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h3>Office Address</h3>
+                                    <p>123 Financial District<br>New York, NY 10004</p>
+                                    <small>Mon-Fri 9AM-6PM EST</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-section">
+                        <form class="contact-form" id="contactForm">
+                            <h3>Send us a Message</h3>
+                            <div id="contactError" class="error-message-box" style="display: none;"></div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">First Name</label>
+                                    <input type="text" class="form-input" id="firstName" name="firstName" required autocomplete="given-name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input type="text" class="form-input" id="lastName" name="lastName" required autocomplete="family-name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input type="email" class="form-input" id="email" name="email" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Subject</label>
+                                <select class="form-input" id="subject" name="subject" required autocomplete="off">
+                                    <option value="">Select a topic</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="investment">Investment Questions</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="account">Account Issues</option>
+                                    <option value="partnership">Partnership Opportunities</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message</label>
+                                <textarea class="form-input" id="message" name="message" rows="5" placeholder="Tell us how we can help you..." required autocomplete="off"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                        <div class="contact-success-message" id="contactSuccessMessage" style="display: none;">
+                            <div class="success-content">
+                                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                                <h3 class="success-title">Message Sent!</h3>
+                                <p class="success-text">Thank you for contacting us. We have received your message and will get back to you soon.</p>
+                                <a href="index.html" class="btn btn-primary success-home-link">Back to Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-categories">
+                    <button class="faq-category active" data-category="general">General</button>
+                    <button class="faq-category" data-category="investment">Investment</button>
+                    <button class="faq-category" data-category="security">Security</button>
+                    <button class="faq-category" data-category="account">Account</button>
+                </div>
+
+                <div class="faq-content">
+                    <div class="faq-category-content active" id="general">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What is WINNING EDGE?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>WINNING EDGE is a professional cryptocurrency investment platform that helps individuals and institutions grow their wealth through strategic digital asset investments. We offer various investment packages with guaranteed returns.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How do I get started?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>To get started, you need a registration token from our admin team. Contact us to request a token, then use it to create your account. Once registered, you can deposit funds and choose an investment package.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What cryptocurrencies do you accept?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We currently accept Bitcoin (BTC), Litecoin (LTC), and Ethereum (ETH) for deposits. We're continuously adding support for more cryptocurrencies based on market demand.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category-content" id="investment">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What are the available investment packages?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We offer three packages: Starter (8% annual return, 3 months), Professional (10% annual return, 6 months), and Premium (12% annual return, 12 months). Each package has different minimum and maximum investment amounts.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How are profits distributed?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Profits are distributed monthly based on your investment package. The annual return is divided by 12 and credited to your account each month. You can withdraw profits or reinvest them.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What is the minimum investment amount?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>The minimum investment varies by package: Starter ($100), Professional ($1,000), and Premium ($5,000). These minimums ensure we can provide the promised returns effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category-content" id="security">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How secure are my investments?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We use military-grade security measures including multi-signature wallets, cold storage, and advanced encryption. Your funds are protected by comprehensive insurance coverage and regular security audits.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What happens if I forget my login credentials?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can use our password reset feature on the login page. Enter your email address, and we'll send you instructions to reset your password securely.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category-content" id="account">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How do I withdraw my profits?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can request withdrawals through your dashboard. We support cryptocurrency, bank transfer, and PayPal withdrawals. Processing typically takes 1-3 business days depending on the method.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Can I have multiple investment packages?</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, you can invest in multiple packages simultaneously. Each investment is tracked separately, and you'll receive profits from each according to their respective terms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-hours">
+            <div class="container">
+                <h2 class="section-title">Support Hours</h2>
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>24/7 Available</p>
+                        <small>Response within 2 hours</small>
+                    </div>
+                    <div class="hours-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone Support</h3>
+                        <p>24/7 Available</p>
+                        <small>Immediate assistance</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <div class="logo-inner">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <span class="footer-logo-text">WINNING EDGE</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in investment growth. Building wealth through smart, secure, and strategic investments.
+                    </p>
+                    <div class="social-links"> 
+                        <a href="https://facebook.com/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+                        <a href="https://twitter.com/winningedgeinv" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a> 
+                        <a href="https://linkedin.com/company/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> 
+                        <a href="https://instagram.com/winningedgeinvestment" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="packages.html">Investment Plans</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="verify-token.html">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="help.html">FAQ</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> support@winningedgeinvestment.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p> <!-- Replace with your actual phone -->
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Investment St, Finance City, USA</p> <!-- Replace with your actual address -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Winning Edge Investment. All rights reserved.</p>
+                    <p>Your Money, Your Growth</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Contact form logic -->
+    <script src="js/contact.js"></script>
+
+</body>
+</html>

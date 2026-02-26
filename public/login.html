@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Winning Edge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #b21f1f;
+            --accent-color: #fdbb2d;
+            --text-color: #333;
+            --light-text: #fff;
+            --gray-light: #f5f7fa;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--gray-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(26, 42, 108, 0.15); /* Made slightly more visible */
+            animation: float 20s infinite ease-in-out; /* Changed to ease-in-out for a better effect */
+            z-index: 1;
+        }
+
+        .floating-icon.icon-1 { top: 15%; left: 10%; font-size: 50px; animation-duration: 25s; }
+        .floating-icon.icon-2 { top: 70%; left: 20%; font-size: 30px; animation-duration: 30s; }
+        .floating-icon.icon-3 { top: 25%; right: 15%; font-size: 60px; animation-duration: 20s; }
+        .floating-icon.icon-4 { bottom: 10%; right: 10%; font-size: 40px; animation-duration: 35s; }
+        .floating-icon.icon-5 { top: 50%; left: 40%; font-size: 25px; animation-duration: 22s; }
+        .floating-icon.icon-6 { bottom: 20%; left: 5%; font-size: 45px; animation-duration: 28s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @media (max-width: 1200px) {
+            .floating-icon.icon-3, .floating-icon.icon-4 { display: none; }
+        }
+        @media (max-width: 900px) {
+            .floating-icon { display: none; }
+        }
+
+        .login-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-container h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-container p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px 12px 40px; /* Add padding for icon */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: #aaa;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .form-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .branding-side {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .branding-side h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .branding-side p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .login-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .branding-side {
+                display: none;
+            }
+        }
+
+        .login-error {
+            color: #b21f1f;
+            background: #fdecea;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <i class="fas fa-chart-line floating-icon icon-1"></i>
+        <i class="fas fa-coins floating-icon icon-2"></i>
+        <i class="fas fa-shield-alt floating-icon icon-3"></i>
+        <i class="fas fa-rocket floating-icon icon-4"></i>
+        <i class="fas fa-network-wired floating-icon icon-5"></i>
+        <i class="fas fa-database floating-icon icon-6"></i>
+
+        <div class="login-wrapper">
+            <div class="branding-side">
+                <h2>Welcome Back!</h2>
+                <p>Securely access your portfolio and continue your investment journey.</p>
+            </div>
+            <div class="form-container">
+                <h1>User Login</h1>
+                <p>Enter your credentials to access your dashboard.</p>
+                <div id="loginError" class="login-error">Invalid username or password.</div>
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <div class="form-links">
+                    <a href="/forgot-password.html">Forgot Password?</a>
+                    <a href="/verify-token.html">Don't have an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account - Winning Edge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #b21f1f;
+            --accent-color: #fdbb2d;
+            --text-dark: #333;
+            --light-text: #fff;
+            --gray-light: #f0f2f5;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--gray-light);
+            min-height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .info-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .info-panel h2 {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .info-panel h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .info-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-panel li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .info-panel li i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .form-panel {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            animation: fadeIn 1.5s ease-out;
+            overflow-y: auto;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .form-container h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-container .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: #aaa;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.15);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            min-height: 18px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .page-wrapper { flex-direction: column; }
+            .info-panel {
+                flex: 0 0 350px;
+                text-align: center;
+                align-items: center;
+            }
+            .info-panel h1 { font-size: 2.5rem; }
+            .info-panel ul { text-align: left; }
+            .form-panel {
+                flex-grow: 1;
+                align-items: flex-start;
+                padding-top: 50px;
+            }
+        }
+        @media (max-width: 576px) {
+            .info-panel { flex: 0 0 300px; padding: 30px; }
+            .info-panel h1 { font-size: 2rem; }
+            .form-panel { padding: 40px 20px; }
+            .form-container { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="info-panel">
+            <h2>WINNING EDGE</h2>
+            <h1>Join an Elite<br>Group of Investors</h1>
+            <ul>
+                <li><i class="fas fa-chart-line"></i> Access high-return investment plans.</li>
+                <li><i class="fas fa-shield-alt"></i> Benefit from a secure & transparent platform.</li>
+                <li><i class="fas fa-headset"></i> Receive 24/7 dedicated support.</li>
+                <li><i class="fas fa-wallet"></i> Manage your portfolio with ease.</li>
+            </ul>
+        </div>
+        <div class="form-panel">
+            <div class="form-container">
+                <h1>Create Your Account</h1>
+                <p class="subtitle">Start your journey to financial freedom today.</p>
+                <form action="/signup" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" required>
+                        <div id="nameError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" required>
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number</label>
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]+" inputmode="numeric" required>
+                        <div id="phoneError" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required>
+                        <div id="passwordError" class="error-message"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+                <p class="login-link">Already have an account? <a href="/login.html">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const nameInput = document.querySelector('#name');
+    const phoneInput = document.querySelector('#phone_number');
+    const emailInput = document.querySelector('#email');
+    const passwordInput = document.querySelector('#password');
+    const nameError = document.querySelector('#nameError');
+    const phoneError = document.querySelector('#phoneError');
+    const emailError = document.querySelector('#emailError');
+    const passwordError = document.querySelector('#passwordError');
+
+    nameInput.addEventListener('input', function() {
+        const name = nameInput.value;
+        const regex = /^[A-Za-z\s-]+$/;
+        if (!regex.test(name)) {
+            nameInput.setCustomValidity('Please enter only letters, spaces, and hyphens.');
+            nameError.textContent = 'Please enter only letters, spaces, and hyphens.';
+        } else {
+            nameInput.setCustomValidity('');
+            nameError.textContent = '';
+        }
+    });
+
+    // Prevent numeric input in name field
+    nameInput.addEventListener('keydown', function(e) {
+        // Allow: backspace, delete, tab, escape, enter
+        if ([8, 9, 27, 13].includes(e.keyCode) || 
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            return;
+        }
+        // Block numbers and numpad numbers
+        if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+            e.preventDefault();
+        }
+    });
+
+    // Prevent non-numeric input in phone field
+    phoneInput.addEventListener('keydown', function(e) {
+        // Allow: backspace, delete, tab, escape, enter, decimal point, and numbers
+        if ([46, 8, 9, 27, 13].includes(e.keyCode) || 
+            // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            return;
+        }
+        // Ensure that it is a number and stop the keypress if not
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    // Keep the existing input validation
+    phoneInput.addEventListener('input', function() {
+        const phone = phoneInput.value;
+        const regex = /^[0-9]+$/;
+        if (!regex.test(phone)) {
+            phoneInput.setCustomValidity('Please enter only numbers.');
+            phoneError.textContent = 'Please enter only numbers.';
+        } else {
+            phoneInput.setCustomValidity('');
+            phoneError.textContent = '';
+        }
+    });
+
+    emailInput.addEventListener('input', function() {
+        const email = emailInput.value;
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!regex.test(email)) {
+            emailInput.setCustomValidity('Please enter a valid email address.');
+            emailError.textContent = 'Please enter a valid email address.';
+        } else {
+            emailInput.setCustomValidity('');
+            emailError.textContent = '';
+        }
+    });
+
+    passwordInput.addEventListener('input', function() {
+        const password = passwordInput.value;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!regex.test(password)) {
+            passwordInput.setCustomValidity('Please enter a strong password (at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character).');
+            passwordError.textContent = 'Please enter a strong password (at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character).';
+        } else {
+            passwordInput.setCustomValidity('');
+            passwordError.textContent = '';
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = nameInput.value;
+        const phone = phoneInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        if (!nameInput.checkValidity()) {
+            nameError.textContent = nameInput.validationMessage;
+            return;
+        }
+
+        if (!phoneInput.checkValidity()) {
+            phoneError.textContent = phoneInput.validationMessage;
+            return;
+        }
+
+        if (!emailInput.checkValidity()) {
+            emailError.textContent = emailInput.validationMessage;
+            return;
+        }
+
+        if (!passwordInput.checkValidity()) {
+            passwordError.textContent = passwordInput.validationMessage;
+            return;
+        }
+
+        // Send data to server
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                name: name,
+                email: email,
+                phone_number: phone,
+                password: password
+            })
+        })
+        .then(response => response.text())
+        .then(html => {
+            // Replace the current page with the server response
+            document.open();
+            document.write(html);
+            document.close();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form. Please try again.');
+        });
+    });
+</script>   
+</html>
