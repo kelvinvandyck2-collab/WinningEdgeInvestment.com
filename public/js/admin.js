@@ -26,23 +26,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Check if user is authenticated
 async function checkAuth() {
-    try {
-        const response = await fetch('/api/admin/check-auth', {
-            credentials: 'same-origin'
-        });
-        
-        if (!response.ok) {
-            window.location.href = '/admin-login.html';
-            return;
-        }
-        
+    try {        
+        const response = await fetchAdminAPI('/api/admin/check-auth');
         const data = await response.json();
         currentUser = data.user;
         updateUserInfo();
     } catch (error) {
-        console.error('Auth check failed:', error);
-        window.location.href = '/admin-login.html';
+        // The fetchAdminAPI helper will handle redirection for auth errors.
+        // We only need to log other types of errors.
+        if (error.message !== 'Session expired') {
+            console.error('Auth check failed:', error);
+            window.location.href = '/admin-login.html';
+        }
     }
+}
+
+// Helper function for authenticated API calls
+async function fetchAdminAPI(url, options = {}) {
+    const defaultOptions = {
+        credentials: 'same-origin',
+        ...options,
+    };
+
+    const response = await fetch(url, defaultOptions);
+
+    if (response.status === 401) {
+        showAlert('Your session has expired. Please log in again.', 'warning');
+        setTimeout(() => { window.location.href = '/admin-login.html'; }, 2000);
+        throw new Error('Session expired');
+    }
+
+    return response;
 }
 
 // Update user information in the UI
@@ -158,9 +172,9 @@ async function loadSection(section, ...args) {
 async function loadDashboard() {
     try {
         const [statsRes, recentUsersRes, recentTransactionsRes] = await Promise.all([
-            fetch('/api/admin/stats', { credentials: 'same-origin' }),
-            fetch('/api/admin/users?limit=5', { credentials: 'same-origin' }),
-            fetch('/api/admin/transactions?limit=5', { credentials: 'same-origin' })
+            fetchAdminAPI('/api/admin/stats'),
+            fetchAdminAPI('/api/admin/users?limit=5'),
+            fetchAdminAPI('/api/admin/transactions?limit=5')
         ]);
         
         if (!statsRes.ok || !recentUsersRes.ok || !recentTransactionsRes.ok) {
@@ -362,7 +376,7 @@ async function loadUsers(page = 1, search = '', status = '') {
         if (search) url.searchParams.set('search', search);
         if (status) url.searchParams.set('status', status);
 
-        const response = await fetch(url, { credentials: 'same-origin' });
+        const response = await fetchAdminAPI(url);
         if (!response.ok) throw new Error('Failed to fetch users');
         
         const data = await response.json();
@@ -479,7 +493,7 @@ async function loadInvestments(page = 1, search = '', status = '') {
         if (search) url.searchParams.set('search', search);
         if (status) url.searchParams.set('status', status);
 
-        const response = await fetch(url, { credentials: 'same-origin' });
+        const response = await fetchAdminAPI(url);
         if (!response.ok) throw new Error('Failed to fetch investments');
         const data = await response.json();
 
@@ -531,7 +545,7 @@ async function loadInvestments(page = 1, search = '', status = '') {
 async function loadTransactions() {
     try {
         // This API endpoint needs to be created in server.js
-        const response = await fetch('/api/admin/all-transactions', { credentials: 'same-origin' });
+        const response = await fetchAdminAPI('/api/admin/all-transactions');
         if (!response.ok) throw new Error('Failed to fetch transactions');
         const data = await response.json();
 
@@ -574,7 +588,7 @@ async function loadWithdrawals(page = 1, search = '', status = '') {
         if (search) url.searchParams.set('search', search);
         if (status) url.searchParams.set('status', status);
 
-        const response = await fetch(url, { credentials: 'same-origin' });
+        const response = await fetchAdminAPI(url);
         if (!response.ok) throw new Error('Failed to fetch withdrawals');
         const data = await response.json();
 
@@ -632,7 +646,7 @@ async function loadDeposits(page = 1, search = '', status = '') {
         if (search) url.searchParams.set('search', search);
         if (status) url.searchParams.set('status', status);
 
-        const response = await fetch(url, { credentials: 'same-origin' });
+        const response = await fetchAdminAPI(url);
         if (!response.ok) throw new Error('Failed to fetch deposits');
         const data = await response.json();
 
@@ -714,7 +728,7 @@ async function handleDepositAction(depositId, status) {
 // Load support tickets content
 async function loadSupport() {
     try {
-        const response = await fetch('/api/admin/support/tickets', { credentials: 'same-origin' });
+        const response = await fetchAdminAPI('/api/admin/support/tickets');
         if (!response.ok) throw new Error('Failed to fetch support tickets');
         const data = await response.json();
 
@@ -759,7 +773,7 @@ function generateTicketListHtml(tickets) {
 
 async function viewAdminTicket(ticketId) {
     try {
-        const response = await fetch(`/api/admin/support/tickets/${ticketId}`, { credentials: 'same-origin' });
+        const response = await fetchAdminAPI(`/api/admin/support/tickets/${ticketId}`);
         if (!response.ok) throw new Error('Failed to fetch ticket details');
         const data = await response.json();
 
@@ -818,7 +832,7 @@ async function handleAdminReply(e) {
 // Load settings content
 async function loadSettings() {
     try {
-        const response = await fetch('/api/admin/settings', { credentials: 'same-origin' });
+        const response = await fetchAdminAPI('/api/admin/settings');
         if (!response.ok) throw new Error('Failed to fetch settings');
         const settings = await response.json();
 
@@ -902,7 +916,7 @@ async function loadSettings() {
 // Load signup tokens content
 async function loadSignupTokens() {
     try {
-        const response = await fetch('/api/admin/signup-tokens', { credentials: 'same-origin' });
+        const response = await fetchAdminAPI('/api/admin/signup-tokens');
         if (!response.ok) throw new Error('Failed to fetch tokens');
         const data = await response.json();
 
@@ -939,7 +953,7 @@ async function loadSignupTokens() {
 
 async function generateNewToken() {
     try {
-        const response = await fetch('/api/admin/signup-tokens', { method: 'POST', credentials: 'same-origin' });
+        const response = await fetchAdminAPI('/api/admin/signup-tokens', { method: 'POST' });
         const result = await response.json();
         showAlert(result.message, result.success ? 'success' : 'danger');
         if (result.success) {
