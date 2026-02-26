@@ -20,6 +20,10 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3003;
 
+// Trust the first proxy in front of the app (Vercel's proxy)
+// This is crucial for secure cookies to work correctly.
+app.set('trust proxy', 1);
+
 // --- Middleware ---
 // Serve static files from the 'public' directory (MUST be high up)
 app.use(express.static(path.join(__dirname, 'public')));
